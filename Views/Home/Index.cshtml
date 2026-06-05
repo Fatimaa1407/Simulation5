@@ -139,15 +139,9 @@
                 <div class="col-md-4 col-sm-4 item">
                     <div class="team-item">
                         <a asp-controller="Home" asp-action="Details" asp-route-id="@member.Id">
-
                         <img src="~/uploads/members/@member.ImageUrl" class="img-responsive" alt="@member.Name @member.Surname">
                         </a>
-                        <div class="team-overlay">
-                            <ul class="social-icon">
-                                <li><a href="#" class="fa fa-twitter"></a></li>
-                                <li><a href="#" class="fa fa-linkedin"></a></li>
-                            </ul>
-                        </div>
+                      
                     </div>
                     <p>@member.Name @member.Surname</p>
                     <h3>@member.Position.Name</h3>

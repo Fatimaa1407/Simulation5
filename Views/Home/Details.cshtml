@@ -1,0 +1,19 @@
+﻿@model Member
+<div>
+    
+    <div>
+        <img width="200px" height="200px"src="~/uploads/members/@Model.ImageUrl" />
+    </div>
+    <div>
+        <h2>@Model.Name</h2>
+    </div>
+    <div>
+        <h2> @Model.Surname</h2>
+    </div>
+    <div>
+        <h2> @Model.Position.Name</h2>
+    </div>
+    <div>
+        <h2> @Model.Description</h2>
+    </div>
+</div>
