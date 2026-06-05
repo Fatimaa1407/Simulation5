@@ -1,0 +1,57 @@
+﻿@using Simulation6.Models
+@model List<Position>
+
+    
+<a class="btn btn-primary" asp-controller="Position" asp-action="Create">Create</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+       
+            <th scope="col">Deleted status</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Position position in Model)
+        {
+            
+            <tr>
+                <th scope="row">@position.Id</th>
+                <td>@position.Name</td>
+              
+                <td>
+                    @if (!position.IsDeleted)
+                    {
+                        <p>Active</p>
+                    }
+                    else
+                    {
+                        <p>Inactive</p>
+                    }
+                </td>
+                <td>
+                    @if (!position.IsDeleted)
+                    {
+                        <form asp-controller="Position" asp-action="Delete" asp-route-id="@position.Id" method="post">
+                            <button class="btn btn-danger" type="submit">Delete</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-controller="Position" asp-action="Restore" asp-route-id="@position.Id" method="post">
+                            <button class="btn btn-success" type="submit">Restore</button>
+                        </form>
+                    }
+                </td>
+                <td>
+                    <a asp-controller="Position" asp-action="Update" asp-route-id="@position.Id" method="post">
+                        <button class="btn btn-warning" type="submit">Update</button>
+                    </a>
+                </td>
+            </tr>
+        }
+     
+    </tbody>
+</table>

@@ -1,0 +1,64 @@
+﻿@using Simulation6.Models
+@model List<Member>
+
+<a class="btn btn-primary" asp-controller="Member" asp-action="Create">Create</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Description</th>
+            <th scope="col">Images</th>
+            <th scope="col">Position</th>
+            <th scope="col">Deleted status</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Member member in Model)
+        {
+            
+        <tr>
+            <th scope="row">@member.Id</th>
+            <td>@member.Name</td>
+            <td>@member.Surname</td>
+            <td>@member.Description</td>
+            <td>
+                <img width="60px" height="60px" src="~/uploads/members/@member.ImageUrl" />
+            </td>
+            <td>@member.Position.Name</td>
+            <td>
+                    @if (!member.IsDeleted)
+                    {
+                        <p>Active</p>
+                    }
+                    else
+                    {
+                        <p>Inactive</p>
+                    }
+                </td>
+                <td>
+                    @if (!member.IsDeleted)
+                    {
+                        <form asp-controller="Member" asp-action="Delete" asp-route-id="@member.Id" method="post">
+                            <button class="btn btn-danger" type="submit">Delete</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-controller="Member" asp-action="Restore" asp-route-id="@member.Id" method="post">
+                            <button class="btn btn-success" type="submit">Restore</button>
+                        </form>
+                    }
+                </td>
+                <td>
+                    <a asp-controller="Member" asp-action="Update" asp-route-id="@member.Id" method="post">
+                        <button class="btn btn-warning" type="submit">Update</button>
+                        </a>
+                </td>
+        </tr>
+        }
+     
+    </tbody>
+</table>
